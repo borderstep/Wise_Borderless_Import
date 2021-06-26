@@ -1,0 +1,64 @@
+<link href="https://ssl.gstatic.com/docs/script/css/add-ons.css" rel="stylesheet"> <!-- default Google Docs styles -->
+<div class="sidebar">
+  <div class="block form-group">
+    <div>
+      <span class="labelSpan"><label for="start">From date</label></span>
+      <span><input class="dataInput" type="date" id="startDateField" name="From"></span>
+      <br>
+      <span class="labelSpan"><label>To date</label></span>
+      <span><input class="dataInput" type="date" id="endDateField" name="To"></span>
+      <br>
+      <span class="labelSpan"><label>Currency </label></span>
+      <span><input class="dataInput" type="text" id="currencyField" name="Currency" maxlength="3" oninput="this.value = this.value.toUpperCase();"></span>
+      <br>
+      <span><input type="radio" id="credits" name="side" value="credit" /></span>
+      <span class="labelSpan"><label for="credits">Credits</label></span>
+      <span><input type="radio" id="debits" name="side" value="debit" /></span>
+      <span class="labelSpan"><label for="debits">Debits</label></span>
+      <br>
+      <p class="apiInfo">Activate the cell you want to begin from and press "Import."</p>
+    </div>
+    <div class="center">
+      <button type="submit" class="blue" id="execute" onclick="">Import</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById("execute").addEventListener("click", formControl);
+
+  function isValidDate(d){
+    return !isNaN((new Date(d)).getTime())
+  }
+
+  function formControl() {
+    var startDate = document.getElementById("startDateField").value
+    var endDate = document.getElementById("endDateField").value
+
+    if (isValidDate(startDate) && isValidDate(endDate)) {
+      if (document.getElementById("currencyField").value.length == 3) {
+        if (document.getElementsByName('side')[0].checked || document.getElementsByName('side')[1].checked) {
+                  google.script.run.requestTxData(document.getElementById('startDateField').value, document.getElementById('endDateField').value, document.getElementById('currencyField').value, document.querySelector('input[name="side"]:checked').value);
+        } else {google.script.run.alertFunction("Please select either credits or debits.")};
+      } else {google.script.run.alertFunction("Please make sure the currency is formatted as a standard 3-letter code.\nFor example: GBP.")};
+    } else {google.script.run.alertFunction("Please make sure the beginning and end dates are correct.")};
+  };
+
+</script>
+
+<style>
+  .apiInfo {
+    width: 78%;
+    color: grey;
+    font-style: italic;
+  }
+  .labelSpan {
+    width: 60px;
+    display: inline-block;
+    margin: 8px 0 8px 0;
+  }
+  .dataInput {
+    width: 125px;
+    display: inline-block;
+  }
+</style>
