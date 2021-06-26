@@ -26,7 +26,7 @@ function runApp() {
   if (documentKey == null || documentKey == "") {
     var result = ui.prompt(
         'Let\'s connect',
-        'Please enter your Wise API key with Read permissions',
+        'Please enter your Wise.com API key with Read permissions',
         ui.ButtonSet.OK_CANCEL);
     APIkey = result.getResponseText();
     documentProperties.setProperty('APIkey', APIkey);
