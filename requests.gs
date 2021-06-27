@@ -22,9 +22,8 @@ function requestIdData() {
     return false
   }
 }
-// GET TRANSACTION DATA
+// PULL AND PREPARE TRANSACTION DATA
 function requestTxData(beginDate, endDate, currency, side) {
-  // PULL AND PREPARE DATA
   var idB = Math.round(documentProperties.getProperty('borderless_id')).toString();
   var borderlessUrl = "https://api.transferwise.com/v1/borderless-accounts/" + idB + "/statement.json?currency=" + currency.toUpperCase() + "&intervalStart=" + beginDate + "T00:00:00.000Z&intervalEnd=" + endDate + "T23:59:59.999Z";
   var response;
@@ -49,9 +48,6 @@ function requestTxData(beginDate, endDate, currency, side) {
 function sprayStatement(tx, currency, side) {
   var sheet = SpreadsheetApp.getActiveSheet();
   const firstActive = sheet.getActiveCell();
-  // sheet.getActiveCell().setValue(currency + " " + side.charAt(0).toUpperCase() + side.slice(1) + "s");
-  // sheet.getActiveCell().offset(1, 0).activate();
-
   for (var i = 0; i < tx.length; i++) {
     if (tx[i].type == side.toUpperCase()) {
       var active = sheet.getActiveCell();
