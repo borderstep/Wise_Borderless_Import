@@ -1,5 +1,5 @@
 //////////////////////////////////
-// SCOPE VARIABLES
+// SCOPE VARIABLES AND ALERT FUNCTION
 var documentProperties = PropertiesService.getDocumentProperties();
 var APIkey;
 var ui = SpreadsheetApp.getUi();
@@ -46,5 +46,4 @@ function runApp() {
   } else {
     runHtml()
   }
-
 }
