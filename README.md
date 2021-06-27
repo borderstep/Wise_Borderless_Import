@@ -1,5 +1,4 @@
 # Import Wise.com debits and credits into Google Sheets
-(Unofficial)
 This is a Google Sheets Script that imports Wise.com user debits and credits.
 There are currently four inputs:
 * API key (once per document)
