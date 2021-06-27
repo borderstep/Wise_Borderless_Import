@@ -8,7 +8,6 @@ function prepareParams() {
 }
 // GET RELEVANT ACCOUNT ID'S
 function requestIdData() {
-  // GET ID DATA
   try {
     var sheet = SpreadsheetApp.getActiveSheet();
     var idFetchA = UrlFetchApp.fetch("https://api.wise.com/v1/profiles", prepareParams());
