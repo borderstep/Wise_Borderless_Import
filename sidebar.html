@@ -26,15 +26,12 @@
 
 <script>
   document.getElementById("execute").addEventListener("click", formControl);
-
   function isValidDate(d){
     return !isNaN((new Date(d)).getTime())
   }
-
   function formControl() {
     var startDate = document.getElementById("startDateField").value
     var endDate = document.getElementById("endDateField").value
-
     if (isValidDate(startDate) && isValidDate(endDate)) {
       if (document.getElementById("currencyField").value.length == 3) {
         if (document.getElementsByName('side')[0].checked || document.getElementsByName('side')[1].checked) {
@@ -43,7 +40,6 @@
       } else {google.script.run.alertFunction("Please make sure the currency is formatted as a standard 3-letter code.\nFor example: GBP.")};
     } else {google.script.run.alertFunction("Please make sure the beginning and end dates are correct.")};
   };
-
 </script>
 
 <style>
